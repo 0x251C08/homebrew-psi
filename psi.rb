@@ -9,10 +9,8 @@ class Psi < Formula
   depends_on "python@3.13"
 
   def install
-    venv = libexec/"venv"
-    system Formula["python@3.13"].opt_bin/"python3", "-m", "venv", venv
-    system venv/"bin/pip", "install", "--no-deps", "--no-index", "."
-    bin.install_symlink Dir[venv/"bin/*"]
+    system Formula["python@3.13"].opt_bin/"python3", "-m", "pip", "install", "--no-deps", "--prefix=#{prefix}", buildpath
+    bin.install_symlink Dir[prefix/"bin/*"]
   end
 
   test do
