@@ -7,9 +7,10 @@ class Psi < Formula
   head "https://github.com/0x251C08/psi.git", branch: "main"
 
   depends_on "python@3.13"
+  depends_on "uv"
 
   def install
-    system Formula["python@3.13"].opt_bin/"python3", "-m", "pip", "install", "--no-deps", "--prefix=#{prefix}", buildpath
+    system Formula["uv"].opt_bin/"uv", "pip", "install", "--no-deps", "--prefix=#{prefix}", buildpath
     bin.install_symlink Dir[prefix/"bin/*"]
   end
 
